@@ -1,11 +1,11 @@
 {
-  "name": "browserify-example",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "ng-express-tpl",
+  "version": "0.1.0",
+  "description": "A template to quickly build an app using Angular1 and Express.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server/server.js"
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
