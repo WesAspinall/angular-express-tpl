@@ -1,3 +1,11 @@
+// Hey to anyone who uses this template!
+// ...couple things I have commented out...
+// ...but you can add them if your heart desires...
+
+// 1) jscs: I find it super annoying... style:js task has been commented out
+// 2) gulp-uglify: C'd out for now, if you're ready for production,
+//   flip that bad boy back on...
+
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
@@ -7,16 +15,16 @@ var babel = require('babelify');
 var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
 var notify  = require('gulp-notify');
-var uglify = require('gulp-uglify');
-var server  = require('gulp-server-livereload');
-var livereload = require('gulp-livereload');
 var fontAwesome = require('node-font-awesome');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var htmlhint = require('gulp-htmlhint');
-// var jscs = require('gulp-jscs');
 var nodemon = require('gulp-nodemon');
-var watch = require('gulp-watch'); // A Better File Watcher
+var livereload = require('gulp-livereload');
+
+// var uglify = require('gulp-uglify');
+// var jscs = require('gulp-jscs');
+
 
 // Set up Bootstrap
 var path = require('path');
@@ -72,7 +80,6 @@ gulp.task('browserify', function() {
     .pipe(gulp.dest('./app/js'));
 });
 
-// Janky - quick fix to write spec file
 gulp.task('browserify-test', function() {
   return browserify('./js/tests.js', {debug: true})
     .transform(babel)
@@ -131,8 +138,8 @@ gulp.task('watch', function() {
   });
 });
 
-// Task
-gulp.task('nodemon', function() {
+//Nodemon instead of gulp-server-livereload
+gulp.task('nodemon', ['default'], function() {
   // listen for changes
   livereload.listen();
   // configure nodemon
@@ -148,16 +155,6 @@ gulp.task('nodemon', function() {
 });
 
 
-gulp.task('server', ['default'], function () {
-  return gulp.src('app')
-    .pipe(server({
-      livereload: true
-    }));
-});
-
-
-
-
 gulp.task('default', ['sass',
                       'fonts',
                       'normalize',
@@ -165,4 +162,4 @@ gulp.task('default', ['sass',
                       'browserify',
                       'browserify-test']);
 
-gulp.task('start', ['default', 'watch', 'server', 'nodemon']);
+gulp.task('start', ['default', 'nodemon']);
