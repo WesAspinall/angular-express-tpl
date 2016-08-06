@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var app = express();
 app.use(express.static(__dirname + '/app'));
 
-var server = app.listen(process.env.PORT || 8000, function () {
+var server = app.listen(process.env.PORT || 7000, function () {
   var port = server.address().port;
   console.log('App now running on port', port);
 });

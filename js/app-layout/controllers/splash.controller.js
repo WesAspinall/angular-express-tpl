@@ -4,7 +4,7 @@ let SplashCtrl = function($state) {
 
   let vm = this;
 
-  vm.title = 'HELLO, WORLD.';
+  vm.title = 'If you see this message, Angular is set up properly';
 };
 
 SplashCtrl.$inject = ['$state'];
