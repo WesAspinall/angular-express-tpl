@@ -2,7 +2,7 @@
   "name": "ng-express-tpl",
   "version": "0.1.0",
   "description": "A template to quickly build an app using Angular1 and Express.js",
-  "main": "app/server.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
