@@ -1,8 +1,9 @@
-@import "bootstrap";
+// @import "bourbon";
+// @import "neat";
 @import "font-awesome";
+@import "bootstrap";
 
-
-
-.layoutContainer{
-	padding: 1em;
+//apply box-sizing to entire doc
+*, *:before, *:after {
+  box-sizing: border-box;
 }
