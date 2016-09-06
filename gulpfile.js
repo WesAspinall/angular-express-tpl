@@ -31,7 +31,7 @@ const nodemon = require('gulp-nodemon');
 
 //linters
 const eslint = require('gulp-eslint');
-var htmlhint = require('gulp-htmlhint');
+const htmlhint = require('gulp-htmlhint');
 
 //error handlers
 const notify = require('gulp-notify');
@@ -62,12 +62,6 @@ gulp.task('sass', () => {
     }))
     .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./app/css'));
-});
-
-gulp.task('normalize', () => {
-  gulp.src(require.resolve('normalize.css'))
-    .pipe(notifyError())
     .pipe(gulp.dest('./app/css'));
 });
 
@@ -109,7 +103,6 @@ gulp.task('browserify', () => {
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./app/js'));
 });
-
 
 gulp.task('browserify-test', () => {
   return browserify('./js/tests.js', {
@@ -153,14 +146,13 @@ gulp.task('nodemon', () => {
     script: 'server.js'
   })
   return stream;
-})
+});
 
 gulp.task('lint', ['style:js', 'hint:html']);
 
 gulp.task('default', [
   'sass',
   'fonts',
-  'normalize',
   'lint',
   'browserify'
 ]);
@@ -173,8 +165,3 @@ gulp.task('serve-express', ['default', 'watch', 'nodemon']);
 
 //serve both client and server code
 gulp.task('start', ['default', 'watch','server','nodemon' ]);
-
-
-
-
-
