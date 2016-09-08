@@ -20,7 +20,7 @@
 ##About
 - Includes a few sample controllers, services, and directives as an example of the code organization 
 - Follows the best practices and conventions expressed in the ever popular style guides of [John Papa] and [Todd Motto]
-- Based on the gulp workflow taught [Tim Whitacre] and [JD Isaacks] at the Iron Yard - Atl (Sept '15)
+- Based on the gulp workflow taught by [Tim Whitacre] and [JD Isaacks] at the Iron Yard - Atl (Sept '15)
 - Provides a tests.js mapped to the `spec` directory set up for use with `Mocha` and `Chai`
 - `express`and a simple `server.js` is included to make requests to your api
 
