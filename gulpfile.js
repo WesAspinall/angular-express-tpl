@@ -65,13 +65,6 @@ gulp.task('sass', () => {
     .pipe(gulp.dest('./app/css'));
 });
 
-// gulp.task('normalize', () => {
-//   gulp.src(require.resolve('normalize.css'))
-//     .pipe(notifyError())
-//     .pipe(uglify())
-//     .pipe(gulp.dest('./app/css'));
-// });
-
 gulp.task('fonts', () => {
   gulp.src(fontAwesome.fonts)
     .pipe(notifyError())
@@ -111,7 +104,6 @@ gulp.task('browserify', () => {
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./app/js'));
 });
-
 
 gulp.task('browserify-test', () => {
   return browserify('./js/tests.js', {
@@ -174,8 +166,3 @@ gulp.task('serve-express', ['default', 'watch', 'nodemon']);
 
 //serve both client and server code
 gulp.task('start', ['default', 'watch','server','nodemon' ]);
-
-
-
-
-
