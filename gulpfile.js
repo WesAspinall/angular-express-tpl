@@ -31,7 +31,7 @@ const nodemon = require('gulp-nodemon');
 
 //linters
 const eslint = require('gulp-eslint');
-var htmlhint = require('gulp-htmlhint');
+const htmlhint = require('gulp-htmlhint');
 
 //error handlers
 const notify = require('gulp-notify');
@@ -65,11 +65,12 @@ gulp.task('sass', () => {
     .pipe(gulp.dest('./app/css'));
 });
 
-gulp.task('normalize', () => {
-  gulp.src(require.resolve('normalize.css'))
-    .pipe(notifyError())
-    .pipe(gulp.dest('./app/css'));
-});
+// gulp.task('normalize', () => {
+//   gulp.src(require.resolve('normalize.css'))
+//     .pipe(notifyError())
+//     .pipe(uglify())
+//     .pipe(gulp.dest('./app/css'));
+// });
 
 gulp.task('fonts', () => {
   gulp.src(fontAwesome.fonts)
@@ -103,6 +104,7 @@ gulp.task('browserify', () => {
     .on('error', browserifyError)
     .pipe(source('./main.js'))
     .pipe(buffer())
+    .pipe(uglify())
     .pipe(sourcemaps.init({
       loadMaps: true
     }))
@@ -153,14 +155,13 @@ gulp.task('nodemon', () => {
     script: 'server.js'
   })
   return stream;
-})
+});
 
 gulp.task('lint', ['style:js', 'hint:html']);
 
 gulp.task('default', [
   'sass',
   'fonts',
-  'normalize',
   'lint',
   'browserify'
 ]);

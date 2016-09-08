@@ -5,6 +5,6 @@ import 'angular-ui-bootstrap';
 import config from './config';
 
 angular
-  .module('app.core', ['ui.router','ui.bootstrap'])
+  .module('app.core', ['ui.router'])
   .config(config)
 ;

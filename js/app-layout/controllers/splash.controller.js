@@ -1,12 +1,30 @@
-let SplashCtrl = function($state) {
-  
-  console.log('I am using my splash controller.');
+const SplashCtrl = function(StringService) {
+    let vm = this;
+    vm.str = '';
+    vm.title = 'Do things to Strings';
+    vm.instructions = 'Enter text: ';
 
-  let vm = this;
+    vm.getStr = getString;
+    vm.activate = activate;
+    vm.reverseIt = reverseIt;
+    activate();
 
-  vm.title = 'If you see this message, Angular is set up properly';
+    function activate() {
+        return reverseIt();
+    }
+
+    function reverseIt() {
+        return StringService.reverseIt(vm.str);
+    }
+
+    function getString() {
+        StringService.getString;
+    }
+
+
+
 };
 
-SplashCtrl.$inject = ['$state'];
+SplashCtrl.$inject = ['StringService'];
 
 export default SplashCtrl;

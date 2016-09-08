@@ -13,17 +13,18 @@ module.exports = {
             4
         ],
         "linebreak-style": [
-            "error",
+            "warn",
             "unix"
         ],
         "no-console": "off",
         "no-undef": "off",
+        "no-unused-vars": "off",
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
         "semi": [
-            "error",
+            "warn",
             "always"
         ]
     }
