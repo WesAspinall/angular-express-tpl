@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 
-//streams
+//fs
 const sourcemaps = require('gulp-sourcemaps');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
@@ -26,12 +26,12 @@ const bootstrapEntry = require.resolve('bootstrap-sass');
 const bootstrapSCSS = path.join(bootstrapEntry, '..', '..', 'stylesheets');
 
 //localhost, node server
-const server = require('gulp-server-livereload');
+const webserver = require('gulp-webserver');
 const nodemon = require('gulp-nodemon');
 
 //linters
 const eslint = require('gulp-eslint');
-const htmlhint = require('gulp-htmlhint');
+var htmlhint = require('gulp-htmlhint');
 
 //error handlers
 const notify = require('gulp-notify');
@@ -97,13 +97,13 @@ gulp.task('browserify', () => {
     .on('error', browserifyError)
     .pipe(source('./main.js'))
     .pipe(buffer())
-    .pipe(uglify())
     .pipe(sourcemaps.init({
       loadMaps: true
     }))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./app/js'));
 });
+
 
 gulp.task('browserify-test', () => {
   return browserify('./js/tests.js', {
@@ -121,6 +121,15 @@ gulp.task('browserify-test', () => {
     .pipe(gulp.dest('./spec/'));
 });
 
+gulp.task('test-server', ['browserify-test'], () => {
+  gulp.src('spec')
+    .pipe(server({
+      livereload: {
+        enable: true
+      },
+    }))
+});
+
 
 gulp.task('watch', () => {
   watch('./sass/**/*.scss', () => gulp.start('sass'));
@@ -132,13 +141,20 @@ gulp.task('watch', () => {
 //////////////////
 // server tasks//
 ////////////////
-gulp.task('server', ['default'], () => {
+gulp.task('server', function() {
   gulp.src('app')
-    .pipe(server({
+    .pipe(webserver({
       livereload: {
-        enable: true
-      },
-    }))
+        enable: true, // need this set to true to enable livereload 
+        filter: function(fileName) {
+          if (fileName.match(/.map$/)) { // exclude all source maps from livereload 
+            return false;
+          } else {
+            return true;
+          }
+        }
+      }
+    }));
 });
 
 gulp.task('nodemon', () => {
@@ -147,7 +163,7 @@ gulp.task('nodemon', () => {
     script: 'server.js'
   })
   return stream;
-});
+})
 
 gulp.task('lint', ['style:js', 'hint:html']);
 
