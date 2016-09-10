@@ -20,11 +20,6 @@ const autoprefixer = require('autoprefixer');
 //font libraries
 const fontAwesome = require('node-font-awesome');
 
-//Bootstrap
-const path = require('path');
-const bootstrapEntry = require.resolve('bootstrap-sass');
-const bootstrapSCSS = path.join(bootstrapEntry, '..', '..', 'stylesheets');
-
 //localhost, node server
 const webserver = require('gulp-webserver');
 const nodemon = require('gulp-nodemon');
@@ -58,7 +53,7 @@ gulp.task('sass', () => {
       loadMaps: true
     }))
     .pipe(sass({
-      includePaths: require('node-neat').with([fontAwesome.scssPath, bootstrapSCSS])
+      includePaths: require('node-neat').with([fontAwesome.scssPath])
     }))
     .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
     .pipe(sourcemaps.write('./'))
