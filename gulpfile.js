@@ -26,7 +26,7 @@ const nodemon = require('gulp-nodemon');
 
 //linters
 const eslint = require('gulp-eslint');
-consts htmlhint = require('gulp-htmlhint');
+const htmlhint = require('gulp-htmlhint');
 
 //error handlers
 const notify = require('gulp-notify');
