@@ -1,9 +1,9 @@
 
 <div class="flex-boxes">
-  <a href="javascript:void(0)" class="flex-box flex-box-big">
+  <div class="flex-box flex-box-big">
     <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_square.png" alt="">
     <h1 class="flex-title">{{::vm.title}}</h1>
     <input type="text" placeholder="type something..." ng-model="vm.str">
     <p class="changedTex" ng-if="vm.str" ng-bind="vm.reverseIt(vm.str)"></p>
-  </a>
+  </div>
 </div>
