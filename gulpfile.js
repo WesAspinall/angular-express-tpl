@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 
-//fs
+//streams
 const sourcemaps = require('gulp-sourcemaps');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
